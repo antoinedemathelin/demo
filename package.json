@@ -1,0 +1,26 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel src/index.html --out-dir docs",
+    "build": "parcel build src/index.html --out-dir docs --public-url ./"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tensorflow/tfjs": "^1.7.2",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.4.1",
+    "canvas": "^2.6.1",
+    "fs": "0.0.1-security",
+    "mathjax": "^3.0.5",
+    "plotly.js-dist": "^1.53.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "cssnano": "^4.1.10"
+  }
+}

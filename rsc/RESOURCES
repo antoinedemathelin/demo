@@ -1,0 +1,29 @@
+Kin 8xy datasets
+****************
+
+Kin 8xy datasets are publicly available at: http://www.cs.toronto.edu/~delve/data/datasets.html
+
+Reference:
+----------
+Carl Edward Rasmussen, Radford M Neal, Geoffrey Hinton, Drew van Camp, Michael Revow Zoubin Ghahramani, Rafal Kustra, and Rob Tibshirani. The delve project.
+
+
+Copyright (c) 1995-1996 by The University of Toronto,
+Toronto, Ontario, Canada.
+All Rights Reserved
+
+Permission to use, copy, modify, and distribute this software and its documentation for non-commercial purposes only is hereby granted without fee, provided that the above copyright notice appears in all copies and that both the copyright notice and this permission notice appear in supporting documentation, and that the name of The University of Toronto not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission. The University of Toronto makes no representations about the suitability of this software for any purpose. It is provided "as is" without express or implied warranty.
+
+The University of Toronto disclaims all warranties with regard to this software, including all implied warranties of merchantability and fitness. In no event shall the University of Toronto be liable for any special, indirect or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of this software. 
+
+
+Superconductivity dataset
+*************************
+
+Superconductivity dataset is publicly available at: https://archive.ics.uci.edu/ml/datasets/superconductivty+data#
+
+References:
+-----------
+Hamidieh, Kam, A data-driven statistical model for predicting the critical temperature of a superconductor, Computational Materials Science, Volume 154, November 2018, Pages 346-354
+
+Dheeru Dua and Casey Graff. UCI machine learning repository. http://archive.ics.uci.edu/ml
