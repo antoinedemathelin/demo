@@ -1,7 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
 import Plotly from 'plotly.js-dist';
 import 'bootstrap/dist/css/bootstrap.css';
-import { linspace, srcLabelsk, extractXY, scale, mean, std, standardScaling, sum, coerceFloat, isFloat, jsonToArray } from './js/utils.js';
+import {randomUniform, linspace, srcLabelsk, extractXY, scale, mean, std, standardScaling, sum, coerceFloat, isFloat, jsonToArray } from './js/utils.js';
 import {baseModelTwoLayer, baseModelOneLayer, baseModelZeroLayer} from './js/basic_methods.js';
 import {createWann, trainWann} from './js/wann.js';
 import fs from 'fs';
@@ -43,6 +43,8 @@ function fitModelToy() {
 	var batchSize = parseInt(document.getElementById('batchSize').value);
 	var lr = parseFloat(document.getElementById('lrToy').value);
 	var method = document.getElementById('model-select').value;
+	var projConst = parseFloat(document.getElementById('projConst').value);
+	var projConstW = parseFloat(document.getElementById('projConstW').value);
 		
 	var xsTensor = tf.tensor2d(xs, [xs.length, 1]);
 	var ysTensor = tf.tensor2d(ys, [ys.length, 1]);
@@ -76,7 +78,7 @@ function fitModelToy() {
 		var yTarget = yttTensor.as1D();
 		
 		var shape = 1;
-		const models = createWann(shape, baseModelTwoLayer, baseModelZeroLayer, undefined, undefined, "ones", lr)
+		const models = createWann(shape, baseModelTwoLayer, baseModelZeroLayer, projConst, projConstW, "ones", lr)
 		const wann = models[0];
 		const weightsPredictor = models[1];
 		const task = models[2];
@@ -85,7 +87,7 @@ function fitModelToy() {
 		isFitting = true;
 		var startDate = new Date();
 		trainWann(wann, weightsPredictor, task, discrepancer,
-		epochs, batchSize, xsTensor, ySource, xttTensor, yTarget, "Toy", xbatchTensor, false).then(() => {
+		epochs, batchSize, xsTensor, ySource, xttTensor, yTarget, "Toy", xbatchTensor, true).then(() => {
 		isFitting = false;
 		var endDate = new Date();
 		document.getElementById("time").innerText = "Time \n" + ((endDate.getTime() - startDate.getTime()) / 1000).toFixed(1);
@@ -99,7 +101,7 @@ function fitModelToy() {
 	} 
 	else 
 	{
-		const model = baseModelTwoLayer(undefined, lr, 1);
+		const model = baseModelTwoLayer(projConst, lr, 1);
 		
 		var i = 1;
 		var bar = document.getElementById('progress_bar');
@@ -715,8 +717,11 @@ document.getElementById('loadtoyButton').addEventListener('click', (el, ev) => {
 	for (var i = 0; i < kLength; i++) {
 		
 		if (i == target_index) {
-			xtt = linspace(-0.5, 0.5, tgtLabels);
-			xttPlot = linspace(0, 1, tgtLabels);
+			xtt = randomUniform(parseInt(tgtLabels * 0.6), -0.5, 0).concat(randomUniform(parseInt(tgtLabels * 0.4), 0, 0.5));
+			xttPlot = []
+			for (var j=0; j<xtt.length; j++) {
+				xttPlot.push(xtt[j] + 0.5);
+			};
 			yt = srcLabelsk(xInput, noiseLvl, ampShift, k[i]);
 			ytt = srcLabelsk(xtt, tgtNoiseLvl, ampShift, k[i]);
 			var plot_t = {

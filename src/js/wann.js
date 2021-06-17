@@ -25,20 +25,25 @@ function discrepancyNetwork (shape, baseModel, C, lr) {
   
 	const diffOutputDiscS = tf.layers.add().apply([outputDiscS, outputSource]);
 	const diffOutputDiscT = tf.layers.add().apply([outputDiscT, outputTarget]);
-	const diffOutputDiscMinusT = tf.layers.multiply().apply([diffOutputDiscT,
+	//const diffOutputDiscMinusT = tf.layers.multiply().apply([diffOutputDiscT,
+	//													   minusOnes]);
+	const diffOutputDiscMinusS = tf.layers.multiply().apply([diffOutputDiscS,
 														   minusOnes]);
+	
 	const weightedDiscS = tf.layers.multiply().apply([weightSource, diffOutputDiscS]);
 
-	const discLossS = tf.layers.dot({axes: 0}).apply([weightedDiscS, diffOutputDiscS]);
-	const discLossT = tf.layers.dot({axes: 0}).apply([diffOutputDiscMinusT, diffOutputDiscT]);
+	//const discLossS = tf.layers.dot({axes: 0}).apply([weightedDiscS, diffOutputDiscS]);
+	//const discLossT = tf.layers.dot({axes: 0}).apply([diffOutputDiscMinusT, diffOutputDiscT]);
+	const discLossS = tf.layers.dot({axes: 0}).apply([weightedDiscS, diffOutputDiscMinusS]);
+	const discLossT = tf.layers.dot({axes: 0}).apply([diffOutputDiscT, diffOutputDiscT]);
 
 	const discLoss = tf.layers.add().apply([discLossS, discLossT]);
-	const discLossSquare = tf.layers.multiply().apply([discLoss, discLoss]);
+//	const discLossSquare = tf.layers.multiply().apply([discLoss, discLoss]);
 
 	const model = tf.model({
 	inputs: [inputSource, inputTarget, outputSource, outputTarget,
 		   weightSource, minusOnes],
-	outputs: discLossSquare});
+	outputs: discLoss});  //discLossSquare
 	model.compile({optimizer: tf.train.adam(lr),
 				 loss: customLossDisc
 				 });

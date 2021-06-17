@@ -32,7 +32,7 @@
 				 With - <b>Amp. shift</b> < <img src="/../rsc/k.PNG" alt="k" width="15" height="15" > < <b>Amp. shift</b> and
 				 <img src="/../rsc/epsilon.PNG" alt="epsilon" width="15" height="15"> given by <b>Noise lvl</b> or <b>Tgt noise lvl</b> (for target training data). <br>
 				 Neural networks with two layers of 100 neurons and ReLU activations are used to learn the task. 
-				 However, to reduce computational time, we use here a linear network as discrepancy hypothesis of WANN algorithm.
+				 To reduce computational time, a linear network is used as discrepancy hypothesis of WANN algorithm.
 				 <br> 
 				</p>
 				<h6>Parameters: </h6>
@@ -41,7 +41,7 @@
 					<span class="input-group-btn" style="width:20px;"></span>
 					<label>Amp. shift: <input type="text" id="ampShift"  class="form-control" value=2> </label>
 					<span class="input-group-btn" style="width:20px;"></span>
-					<label>Tgt labels Nbr: <input type="text" id="tgtLabels" class="form-control" value=8> </label>
+					<label>Tgt labels Nbr: <input type="text" id="tgtLabels" class="form-control" value=10> </label>
 					<span class="input-group-btn" style="width:20px;"></span>
 					<label>Noise lvl: <input type="text" id="noiseLvl" class="form-control" value=0.05> </label>
 					<span class="input-group-btn" style="width:20px;"></span>
@@ -58,11 +58,15 @@
 						<option value="tgtOnly">Tgt Only</option>
 					</select> </label>
 					<span class="input-group-btn" style="width:20px;"></span>
-					<label>Epochs: <input type="text" id="epochs" class="form-control" value=30> </label>
+					<label>Epochs: <input type="text" id="epochs" class="form-control" value=60> </label>
 					<span class="input-group-btn" style="width:20px;"></span>
 					<label>Batch size: <input type="text" id="batchSize"  class="form-control" value=64> </label>
 					<span class="input-group-btn" style="width:20px;"></span>
-					<label>Learning rate: <input type="text" id="lrToy" class="form-control" value=0.01> </label>
+					<label>Proj. Constant: <input type="text" id="projConst" class="form-control" value=10> </label>
+					<span class="input-group-btn" style="width:20px;"></span>
+					<label>Proj. Constant W.: <input type="text" id="projConstW" class="form-control" value=0.5> </label>
+					<span class="input-group-btn" style="width:20px;"></span>
+					<label>Learning rate: <input type="text" id="lrToy" class="form-control" value=0.001> </label>
 				</div><br>
                 
 				<div class="input-group">

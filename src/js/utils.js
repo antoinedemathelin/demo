@@ -54,6 +54,16 @@ function getRandomSubarray(arr, size) {
 };
 
 
+export function randomUniform(size, min=0, max=1) {
+    var array = [];
+	var delta = max - min
+	for (var i=0; i<size; i++) {
+		array.push(Math.random() * delta + min);
+	};
+    return array;
+};
+
+
 export function extractXY (string, nCols, size) {
 	var array = [];
 	for (var i in string) {
